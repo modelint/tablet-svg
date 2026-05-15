@@ -16,8 +16,8 @@ from tabletsvg.presentation import Presentation
 # from tabletqt.graphics.polygon_se import PolygonSE
 from tabletsvg.graphics.line_segment import LineSegment
 from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
+from tabletsvg.graphics.text_element import TextElement
 # from tabletqt.graphics.rectangle_se import RectangleSE
-# from tabletqt.graphics.text_element import TextElement
 # from tabletqt.graphics.image import ImageDE
 # from tabletqt.graphics.symbol import Symbol
 
@@ -65,8 +65,12 @@ class Layer:
         # self.Rectangles: List[element.Rectangle] = []
         self.RawRectangles: List[element.Raw_Rectangle] = []
         self.RawLines: List[element.Raw_Line] = []
-        # self.TextUnderlayRects: List[element.FillRect] = []
-        # self.Text: List[element.Text_line] = []
+        self.TextUnderlayRects: List[element.FillRect] = []
+        self.Text: List[element.Text_line] = []
+        # self.Symbols: List[...] = []
+        # self.Circles: List[element.Circle] = []
+        # self.Polygons: List[...] = []
+        # self.Rectangles: List[element.Rectangle] = []
         # self.Images: List[element.Image] = []
 
         # Load this Layer's presentation assets if they haven't been already
@@ -92,9 +96,9 @@ class Layer:
         # CircleSE.render(self)
         # RectangleSE.render(self)
         # PolygonSE.render(self)
-        # TextElement.render_underlays(self)  # Renders any color fills that lie underneath text blocks or lines
-        # TextElement.render(self)  # Render text after vector content so that it is never underneath
-        # ImageDE.render(self)  # Text should not be drawn over images, so we can render these last
+        elements.extend(TextElement.render_underlays(self))
+        elements.extend(TextElement.render(self))
+        # ImageDE.render(self)
 
         # Diagnostic elements with explicit styling that bypass StyleDB lookup
         # Not intended for use by any client applications
