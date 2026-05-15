@@ -8,6 +8,7 @@ from datetime import datetime  # For initial log entry
 from pathlib import Path
 from typing import Optional
 
+
 # Qt
 # from PyQt6.QtWidgets import QApplication
 
@@ -73,7 +74,8 @@ class Tablet:
     """
 
     def __init__(self, size: Rect_Size, output_file: Path, drawing_type: str, presentation: str,
-                 layer: str, show_window: bool = False, background_color: Optional[str] = 'white'):
+                 layer: str, show_window: bool = False, background_color: Optional[str] = 'white',
+                 pdf: bool = False):
         """
         Constructs a new Tablet instance with a single initial predefined Layer
 
@@ -83,6 +85,7 @@ class Tablet:
         :param presentation: Initial layer's Presentation so we know what graphic styles to use for our Assets
         :param layer: The name of the predefined initial Layer to be created on this Tablet (typically 'diagram')
         :param background_color: Name of background color defined in colors.yaml
+        :param pdf: If True, also write a PDF alongside the SVG file
         """
         self.logger = logging.getLogger(__name__)
         self.logger.info(f"Tablet init: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -103,6 +106,7 @@ class Tablet:
         # View, but this is the draw order from bottom-most layer upward
         # It can (should be) customizable by the user, but this should work for most diagrams
         self.show_window = show_window
+        self.pdf = pdf
         try:
             self.background_color = StyleDB.color[background_color]  # This is referenced when filling text underlay rects
         except KeyError:
@@ -187,6 +191,12 @@ class Tablet:
         ET.indent(tree, space='  ')
         tree.write(str(self.Output_file), encoding='unicode', xml_declaration=False)
         self.logger.info(f"SVG written to {self.Output_file}")
+
+        if self.pdf:
+            import cairosvg
+            pdf_path = self.Output_file.with_suffix('.pdf')
+            cairosvg.svg2pdf(url=str(self.Output_file), write_to=str(pdf_path))
+            self.logger.info(f"PDF written to {pdf_path}")
 
     def to_dc(self, tablet_coord: Position) -> Position:
         """
