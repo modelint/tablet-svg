@@ -17,3 +17,7 @@ Text_line = namedtuple('_Text_line', 'upper_left text style')
 """A line of text (no CR/LF characters) rendered with a given style"""
 Image = namedtuple('_Image', 'resource_path upper_left size')
 """A png or jpeg image file and a position"""
+Raw_Line = namedtuple('_Raw_Line', 'from_here to_there color')
+"""A diagnostic line drawn with an explicit CSS color name, bypassing the StyleDB"""
+Raw_Rectangle = namedtuple('_Raw_Rectangle', 'upper_left size')
+"""A diagnostic unfilled rectangle drawn with a black border, bypassing the StyleDB"""

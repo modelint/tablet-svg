@@ -6,7 +6,7 @@ from tabletsvg.geometry_types import Rect_Size, Position
 # from tabletqt.graphics.symbol import Symbol
 # from tabletqt.graphics.text_element import TextElement, TextBlockCorner, HorizAlign
 from tabletsvg.graphics.line_segment import LineSegment
-# from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
+from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
 
 points_in_mm = 2.83465
 points_in_cm = 28.3465
@@ -38,8 +38,8 @@ class SketchSymbols:
         line = LineSegment.add(layer=dlayer, asset="binary association connector",
                                from_here=Position(100,100), to_there=Position(100,300))
 
-        # DiagnosticMarker.add_raw_rectangle(layer=dlayer, upper_left=Position(10, 580),
-        #                                    size=Rect_Size(width=800,height=580))
+        DiagnosticMarker.add_raw_rectangle(layer=dlayer, upper_left=Position(10, 580),
+                                           size=Rect_Size(width=800,height=580))
         # DiagnosticMarker.add_cross_hair(layer=dlayer, location=Position(10, 580))
         # DiagnosticMarker.add_cross_hair(dlayer, Position(300, 275))
         cls.tablet.render()

@@ -15,11 +15,11 @@ from tabletsvg.presentation import Presentation
 # from tabletqt.graphics.circle_se import CircleSE
 # from tabletqt.graphics.polygon_se import PolygonSE
 from tabletsvg.graphics.line_segment import LineSegment
+from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
 # from tabletqt.graphics.rectangle_se import RectangleSE
 # from tabletqt.graphics.text_element import TextElement
 # from tabletqt.graphics.image import ImageDE
 # from tabletqt.graphics.symbol import Symbol
-# from tabletqt.graphics.diagnostic_marker import DiagnosticMarker
 
 
 if TYPE_CHECKING:
@@ -63,8 +63,8 @@ class Layer:
         # self.Circles: List[element.Circle] = []
         # self.Polygons: List[QGraphicsPolygonItem] = []
         # self.Rectangles: List[element.Rectangle] = []
-        # self.RawRectangles: List[QGraphicsRectItem] = []
-        # self.RawLines: List[QGraphicsLineItem] = []
+        self.RawRectangles: List[element.Raw_Rectangle] = []
+        self.RawLines: List[element.Raw_Line] = []
         # self.TextUnderlayRects: List[element.FillRect] = []
         # self.Text: List[element.Text_line] = []
         # self.Images: List[element.Image] = []
@@ -98,5 +98,5 @@ class Layer:
 
         # Diagnostic elements with explicit styling that bypass StyleDB lookup
         # Not intended for use by any client applications
-        # DiagnosticMarker.render(self)
+        elements.extend(DiagnosticMarker.render(self))
         return elements
