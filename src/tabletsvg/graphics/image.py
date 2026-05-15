@@ -45,10 +45,11 @@ class ImageDE:
         """
         Register an image on the layer, converting to device coordinates.
 
-        :param layer: Draw on this Layer
-        :param name: Image resource name (key in images.yaml)
-        :param lower_left: Lower left corner of the image in tablet coordinates
-        :param size: Display size in points
+        Args:
+            layer: Draw on this Layer.
+            name: Image resource name (key in images.yaml).
+            lower_left: Lower left corner of the image in tablet coordinates.
+            size: Display size in points.
         """
         try:
             ll_dc = layer.Tablet.to_dc(lower_left)
@@ -89,8 +90,11 @@ class ImageDE:
         matching the Qt behaviour where QPixmap rendered at native resolution
         regardless of the size hint passed to add().
 
-        :param layer: Draw on this layer
-        :return: List of SVG image elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG image elements.
         """
         elements = []
         for img in layer.Images:

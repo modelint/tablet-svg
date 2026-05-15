@@ -44,10 +44,11 @@ class Symbol:
         """
         Creates a Symbol from data in symbols.yaml and adds it to the layer's Symbols list.
 
-        :param layer: Layer where the symbol will be drawn
-        :param name: Symbol name (e.g. 'M mult', 'final pseudo state')
-        :param pin: Bottom-center anchor point in tablet coordinates
-        :param angle: Degrees clockwise (0=up, 90=right, 180=down, 270=left)
+        Args:
+            layer: Layer where the symbol will be drawn.
+            name: Symbol name (e.g. 'M mult', 'final pseudo state').
+            pin: Bottom-center anchor point in tablet coordinates.
+            angle: Degrees clockwise (0=up, 90=right, 180=down, 270=left).
         """
         self.logger = logging.getLogger(__name__)
         self.layer = layer
@@ -109,8 +110,9 @@ class Symbol:
         """
         Add a filled closed polygon component to the symbol group.
 
-        :param component_name: Component identifier used for style lookup
-        :param shape_def: List of [x, y] vertex offsets from the pin (tablet coordinates)
+        Args:
+            component_name: Component identifier used for style lookup.
+            shape_def: List of [x, y] vertex offsets from the pin (tablet coordinates).
         """
         canvas_verts = [Position(v[0] + self.pin.x, v[1] + self.pin.y) for v in shape_def]
         verts_dc = [self.layer.Tablet.to_dc(v) for v in canvas_verts]
@@ -127,8 +129,9 @@ class Symbol:
         """
         Add an open polyline component to the symbol group.
 
-        :param component_name: Component identifier used for style lookup
-        :param shape_def: List of [x, y] vertex offsets from the pin (tablet coordinates)
+        Args:
+            component_name: Component identifier used for style lookup.
+            shape_def: List of [x, y] vertex offsets from the pin (tablet coordinates).
         """
         canvas_verts = [Position(v[0] + self.pin.x, v[1] + self.pin.y) for v in shape_def]
         verts_dc = [self.layer.Tablet.to_dc(v) for v in canvas_verts]
@@ -145,8 +148,9 @@ class Symbol:
         """
         Add a circle component to the symbol group.
 
-        :param component_name: Component identifier used for style lookup
-        :param shape_def: Dict with 'center' ([x, y] offsets from pin) and 'radius' keys
+        Args:
+            component_name: Component identifier used for style lookup.
+            shape_def: Dict with 'center' ([x, y] offsets from pin) and 'radius' keys.
         """
         center_tablet = Position(self.pin.x + shape_def['center'][0],
                                  self.pin.y + shape_def['center'][1])
@@ -168,7 +172,10 @@ class Symbol:
         """
         Return all symbol group elements for this layer.
 
-        :param layer: Draw on this layer
-        :return: List of SVG <g> elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG <g> elements.
         """
         return list(layer.Symbols)

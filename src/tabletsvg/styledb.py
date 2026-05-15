@@ -109,7 +109,7 @@ class StyleDB:
     @classmethod
     def preprocess_colors(cls, raw_data):
         """
-        # Validate color float values for QT6
+        Validate color float values.
         """
         for name, rgb in raw_data.items():
             for n in [rgb.r, rgb.g, rgb.b]:

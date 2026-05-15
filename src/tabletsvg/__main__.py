@@ -26,10 +26,7 @@ def get_logger():
 # Configure the expected parameters and actions for the argparse module
 def parse(cl_input):
     """
-    The command line interface is for diagnostic purposes
-
-    :param cl_input:
-    :return:
+    The command line interface is for diagnostic purposes.
     """
     parser = argparse.ArgumentParser(description='Tabletx 2D draw interface to Cairo')
     parser.add_argument('-demo', action='store',

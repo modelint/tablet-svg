@@ -23,13 +23,16 @@ def _rounded_rect_path(x: float, y: float, w: float, h: float,
     """
     Build an SVG path string for a rectangle with independently rounded top and/or bottom corners.
 
-    :param x: Upper-left x in device coordinates
-    :param y: Upper-left y in device coordinates
-    :param w: Width
-    :param h: Height
-    :param top_r: Corner radius for top corners (0 = square)
-    :param bottom_r: Corner radius for bottom corners (0 = square)
-    :return: SVG path data string
+    Args:
+        x: Upper-left x in device coordinates.
+        y: Upper-left y in device coordinates.
+        w: Width.
+        h: Height.
+        top_r: Corner radius for top corners (0 = square).
+        bottom_r: Corner radius for bottom corners (0 = square).
+
+    Returns:
+        SVG path data string.
     """
     r_t = top_r
     r_b = bottom_r
@@ -92,11 +95,12 @@ class RectangleSE:
         """
         Adds a rectangle to the Layer with position converted to device coordinates.
 
-        :param layer: Draw on this Layer
-        :param asset: Used to determine draw style
-        :param lower_left: Lower left corner position in tablet coordinates
-        :param size: The size of the rectangle in points
-        :param color_usage: If supplied, overrides the presentation fill color
+        Args:
+            layer: Draw on this Layer.
+            asset: Used to determine draw style.
+            lower_left: Lower left corner position in tablet coordinates.
+            size: The size of the rectangle in points.
+            color_usage: If supplied, overrides the presentation fill color.
         """
         ll_dc = layer.Tablet.to_dc(lower_left)
         ul = Position(x=ll_dc.x, y=ll_dc.y - size.height)
@@ -133,8 +137,11 @@ class RectangleSE:
         """
         Build SVG elements for all rectangles on this layer.
 
-        :param layer: Draw on this layer
-        :return: List of SVG elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG elements.
         """
         elements = []
         for r in layer.Rectangles:
@@ -177,9 +184,12 @@ class RectangleSE:
         """
         Render a single filled, borderless rectangle (used for text underlays).
 
-        :param layer: Draw on this layer
-        :param frect: The fill rectangle element
-        :return: List containing one SVG rect element
+        Args:
+            layer: Draw on this layer.
+            frect: The fill rectangle element.
+
+        Returns:
+            List containing one SVG rect element.
         """
         c = frect.color
         el = ET.Element('rect', {

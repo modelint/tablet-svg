@@ -77,15 +77,16 @@ class Tablet:
                  layer: str, show_window: bool = False, background_color: Optional[str] = 'white',
                  pdf: bool = False):
         """
-        Constructs a new Tablet instance with a single initial predefined Layer
+        Constructs a new Tablet instance with a single initial predefined Layer.
 
-        :param size: Vertical and horizontal span of the entire draw surface in points
-        :param output_file: Name of the drawing file to be generated, PDF only for now
-        :param drawing_type: Initial layer Drawing Type so we know what kinds text and graphics Assets can be drawn
-        :param presentation: Initial layer's Presentation so we know what graphic styles to use for our Assets
-        :param layer: The name of the predefined initial Layer to be created on this Tablet (typically 'diagram')
-        :param background_color: Name of background color defined in colors.yaml
-        :param pdf: If True, also write a PDF alongside the SVG file
+        Args:
+            size: Vertical and horizontal span of the entire draw surface in points.
+            output_file: Name of the drawing file to be generated.
+            drawing_type: Initial layer Drawing Type so we know what kinds text and graphics Assets can be drawn.
+            presentation: Initial layer's Presentation so we know what graphic styles to use for our Assets.
+            layer: The name of the predefined initial Layer to be created on this Tablet (typically 'diagram').
+            background_color: Name of background color defined in colors.yaml.
+            pdf: If True, also write a PDF alongside the SVG file.
         """
         self.logger = logging.getLogger(__name__)
         self.logger.info(f"Tablet init: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -147,10 +148,13 @@ class Tablet:
         If a layer name is supplied that does not correspond to any of the predefined layers, it will be stacked
         after the last predefined layer and, thus, rendered last.
 
-        :param name: One of the standard layer stickers or a custom layer name
-        :param presentation: The Presentation name associated with this Layer
-        :param drawing_type: The Drawing Type defining this Presentation
-        :return: A reference to the newly created layer
+        Args:
+            name: One of the standard layer stickers or a custom layer name.
+            presentation: The Presentation name associated with this Layer.
+            drawing_type: The Drawing Type defining this Presentation.
+
+        Returns:
+            A reference to the newly created layer.
         """
         if not self.layers.get(name):
             if name not in self.layer_order:
@@ -216,8 +220,11 @@ class Tablet:
         Note: This may seem like overkill for a simple computation and check, but less
         error prone than having this pattern sprinked throughout the code.
 
-        :param tablet_coord: Position in table coordinates
-        :return: Position in device coordinates
+        Args:
+            tablet_coord: Position in table coordinates.
+
+        Returns:
+            Position in device coordinates.
         """
         if tablet_coord.y > self.Size.height:
             raise TabletBoundsExceeded("Tablet height exceeded", height=tablet_coord.y - self.Size.height, width=0)

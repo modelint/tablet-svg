@@ -16,8 +16,11 @@ class CrayonBox:
         """
         Returns a dict of SVG stroke attributes for a named line style.
 
-        :param border_style: Name of the line style key in the StyleDB
-        :return: Dict of SVG presentation attributes (stroke, stroke-width, stroke-dasharray)
+        Args:
+            border_style: Name of the line style key in the StyleDB.
+
+        Returns:
+            Dict of SVG presentation attributes (stroke, stroke-width, stroke-dasharray).
         """
         ls = StyleDB.line_style[border_style]
         color = StyleDB.color[ls.color]

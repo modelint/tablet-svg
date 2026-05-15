@@ -37,10 +37,11 @@ class LineSegment:
         Convert line segment coordinates to device coordinates and combine with the Line Style defined
         for the Asset in the selected Presentation Style.
 
-        :param layer: Draw on this layer
-        :param asset: Used to determine draw style
-        :param from_here: In tablet coordinates
-        :param to_there: In tablet coordinates
+        Args:
+            layer: Draw on this layer.
+            asset: Used to determine draw style.
+            from_here: In tablet coordinates.
+            to_there: In tablet coordinates.
         """
         try:
             line_style = layer.Presentation.Line_presentation[asset]['line style']
@@ -61,8 +62,11 @@ class LineSegment:
         """
         Build SVG line elements for all line segments on this layer.
 
-        :param layer: Draw on this layer
-        :return: List of SVG <line> elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG <line> elements.
         """
         elements = []
         for ls in layer.Line_segments:

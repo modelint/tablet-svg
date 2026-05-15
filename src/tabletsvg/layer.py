@@ -43,12 +43,13 @@ class Layer:
 
     def __init__(self, name: str, tablet: 'Tablet', presentation: str, drawing_type: str):
         """
-        Constructor
+        Constructor.
 
-        :param name: A predefined or custom Layer name
-        :param tablet: Layer is created on this Tablet object
-        :param presentation: Name of Presentation styling the text and graphics on this Layer
-        :param drawing_type: Name of Drawing Type to determine assets that may be drawn on this Layer
+        Args:
+            name: A predefined or custom Layer name.
+            tablet: Layer is created on this Tablet object.
+            presentation: Name of Presentation styling the text and graphics on this Layer.
+            drawing_type: Name of Drawing Type to determine assets that may be drawn on this Layer.
         """
         self.logger = logging.getLogger(__name__)
         self.logger.info(f"creating layer: [{name}] ")

@@ -26,8 +26,8 @@ class Presentation:
 
     def __init__(self, name: str, drawing_type: str):
         """
-       Constructor
-       """
+        Constructor.
+        """
         self.logger = logging.getLogger(__name__)
         self.Name = name
         self.Drawing_type = drawing_type

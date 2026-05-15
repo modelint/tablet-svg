@@ -71,10 +71,13 @@ class TextElement:
         Uses font size as the cap height and estimates width at 0.6× font size per character,
         which is a reasonable average for the proportional fonts used in this project.
 
-        :param presentation: The Presentation
-        :param asset: Determines text display style
-        :param text_line: Line of text
-        :return: Approximate size of the text line
+        Args:
+            presentation: The Presentation.
+            asset: Determines text display style.
+            text_line: Line of text.
+
+        Returns:
+            Approximate size of the text line.
         """
         style_name = presentation.Text_presentation[asset]
         style = StyleDB.text_style[style_name['text style']]
@@ -87,10 +90,13 @@ class TextElement:
         """
         Determines the approximate dimensions of a rectangle bounding the text to be drawn.
 
-        :param presentation: The Presentation
-        :param asset: Name of the text asset to get display style properties
-        :param text_block: A list of text lines to be displayed
-        :return: The approximate display size of the text block
+        Args:
+            presentation: The Presentation.
+            asset: Name of the text asset to get display style properties.
+            text_block: A list of text lines to be displayed.
+
+        Returns:
+            The approximate display size of the text block.
         """
         style_name = presentation.Text_presentation[asset]
         style = StyleDB.text_style[style_name['text style']]
@@ -112,12 +118,15 @@ class TextElement:
         """
         Given a text block and the position of one of its corners, return the position of its lower left corner.
 
-        :param presentation: The target layer's Presentation
-        :param asset: Name of asset that defines the style properties for rendering the text
-        :param text_block: Lines of text in the block
-        :param pin: Location of some corner in Tablet coordinates
-        :param corner: The corner to be pinned (upper left, lower right, ...)
-        :return: The position of the lower left corner in Tablet coordinates
+        Args:
+            presentation: The target layer's Presentation.
+            asset: Name of asset that defines the style properties for rendering the text.
+            text_block: Lines of text in the block.
+            pin: Location of some corner in Tablet coordinates.
+            corner: The corner to be pinned (upper left, lower right, ...).
+
+        Returns:
+            The position of the lower left corner in Tablet coordinates.
         """
         if corner == TextBlockCorner.LL:
             return pin
@@ -138,11 +147,12 @@ class TextElement:
 
         A sticker is always a single line of text, so alignment is not specified.
 
-        :param layer: Place sticker on this layer
-        :param asset: Defines the style properties for rendering the text
-        :param name: Name of the sticker to be applied
-        :param pin: Location of some corner (like a thumbtack pin)
-        :param corner: The corner to be pinned
+        Args:
+            layer: Place sticker on this layer.
+            asset: Defines the style properties for rendering the text.
+            name: Name of the sticker to be applied.
+            pin: Location of some corner (like a thumbtack pin).
+            corner: The corner to be pinned.
         """
         drawing_type = cls.stickers[layer.Drawing_type]
         try:
@@ -159,9 +169,10 @@ class TextElement:
         """
         Add a filled rectangle matching the background color to sit beneath text.
 
-        :param layer: Draw on this layer
-        :param lower_left: Lower left corner position in tablet coordinates
-        :param size: The size of the underlay rectangle in points
+        Args:
+            layer: Draw on this layer.
+            lower_left: Lower left corner position in tablet coordinates.
+            size: The size of the underlay rectangle in points.
         """
         ll_dc = layer.Tablet.to_dc(lower_left)
         ul = Position(x=ll_dc.x, y=ll_dc.y - size.height)
@@ -176,10 +187,11 @@ class TextElement:
         For SVG output the stored position is the device-coordinate baseline anchor —
         the x,y from which the SVG renderer draws the text upward.
 
-        :param layer: Draw on this layer
-        :param asset: Used to determine text style
-        :param lower_left: Lower left corner position of text line in tablet coordinates
-        :param text: The text string to render
+        Args:
+            layer: Draw on this layer.
+            asset: Used to determine text style.
+            lower_left: Lower left corner position of text line in tablet coordinates.
+            text: The text string to render.
         """
         ll_dc = layer.Tablet.to_dc(lower_left)
 
@@ -207,12 +219,13 @@ class TextElement:
         """
         Pin a text block to a Layer specifying any of the four block corners.
 
-        :param layer: Add text to this layer
-        :param asset: Determines text style
-        :param text: One or more lines of text
-        :param pin: Location of the pinned corner in tablet coordinates
-        :param corner: Which corner is pinned
-        :param align: Horizontal alignment within the block
+        Args:
+            layer: Add text to this layer.
+            asset: Determines text style.
+            text: One or more lines of text.
+            pin: Location of the pinned corner in tablet coordinates.
+            corner: Which corner is pinned.
+            align: Horizontal alignment within the block.
         """
         ll_corner = cls.lower_left_pin(presentation=layer.Presentation, asset=asset, text_block=text,
                                        pin=pin, corner=corner)
@@ -224,11 +237,12 @@ class TextElement:
         """
         Add all lines in a text block to the Layer, positioned from the bottom up.
 
-        :param layer: Add text to this Layer
-        :param asset: Determines text style
-        :param lower_left: Lower left corner of the text block on the Tablet
-        :param text: One or more lines of text
-        :param align: Horizontal alignment (left, right, or center)
+        Args:
+            layer: Add text to this Layer.
+            asset: Determines text style.
+            lower_left: Lower left corner of the text block on the Tablet.
+            text: One or more lines of text.
+            align: Horizontal alignment (left, right, or center).
         """
         style_name = layer.Presentation.Text_presentation[asset]
         style = StyleDB.text_style[style_name['text style']]
@@ -257,8 +271,11 @@ class TextElement:
         """
         Render all text underlays as filled, borderless rectangles.
 
-        :param layer: Draw on this layer
-        :return: List of SVG rect elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG rect elements.
         """
         elements = []
         for u in layer.TextUnderlayRects:
@@ -279,8 +296,11 @@ class TextElement:
         The stored position is the SVG baseline anchor (device coordinates).
         Font properties are mapped directly to SVG presentation attributes.
 
-        :param layer: Draw on this Layer
-        :return: List of SVG text elements
+        Args:
+            layer: Draw on this Layer.
+
+        Returns:
+            List of SVG text elements.
         """
         elements = []
         for t in layer.Text:

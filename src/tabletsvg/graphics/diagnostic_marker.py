@@ -26,9 +26,10 @@ class DiagnosticMarker:
         """
         Place a diagnostic cross hair at the requested point.
 
-        :param layer: Draw on this layer
-        :param location: Where to place the crosshair in tablet coordinates
-        :param color: CSS color name for the crosshair lines
+        Args:
+            layer: Draw on this layer.
+            location: Where to place the crosshair in tablet coordinates.
+            color: CSS color name for the crosshair lines.
         """
         dc = layer.Tablet.to_dc(location)
         r = cls.ch_radius
@@ -43,9 +44,10 @@ class DiagnosticMarker:
         Add an unfilled rectangle for diagnostic purposes. Dimensions are supplied
         directly without consulting the StyleDB.
 
-        :param layer: Draw on this layer
-        :param upper_left: Upper-left corner in tablet coordinates
-        :param size: Width and height of the rectangle
+        Args:
+            layer: Draw on this layer.
+            upper_left: Upper-left corner in tablet coordinates.
+            size: Width and height of the rectangle.
         """
         uldc = layer.Tablet.to_dc(upper_left)
         layer.RawRectangles.append(element.Raw_Rectangle(upper_left=uldc, size=size))
@@ -55,8 +57,11 @@ class DiagnosticMarker:
         """
         Build SVG elements for all diagnostic markers on this layer.
 
-        :param layer: Draw on this layer
-        :return: List of SVG elements
+        Args:
+            layer: Draw on this layer.
+
+        Returns:
+            List of SVG elements.
         """
         elements = []
 
