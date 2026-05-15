@@ -20,7 +20,7 @@ from tabletsvg.layer import Layer
 # from tabletqt.scene_view import MainWindow
 # from tabletqt.graphics.image import ImageDE
 from tabletsvg.configuration.styles import FloatRGB
-# from tabletqt.graphics.symbol import Symbol
+from tabletsvg.graphics.symbol import Symbol
 from tabletsvg.graphics.text_element import TextElement
 from tabletsvg.resource_library import ResourceLibrary
 
@@ -94,7 +94,7 @@ class Tablet:
         ResourceLibrary.init_user_images()
 
         # Load symbols, stickers, and build image paths for all assets and drawing types
-        # Symbol.load_symbol_defs()
+        Symbol.load_symbol_defs()
         # ImageDE.build_paths()
         TextElement.load_stickers()
 

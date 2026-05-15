@@ -17,9 +17,9 @@ from tabletsvg.presentation import Presentation
 from tabletsvg.graphics.line_segment import LineSegment
 from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
 from tabletsvg.graphics.text_element import TextElement
+from tabletsvg.graphics.symbol import Symbol
 # from tabletqt.graphics.rectangle_se import RectangleSE
 # from tabletqt.graphics.image import ImageDE
-# from tabletqt.graphics.symbol import Symbol
 
 
 if TYPE_CHECKING:
@@ -59,15 +59,11 @@ class Layer:
 
         # Stuff we will draw on the Layer
         self.Line_segments: List[element.Line_Segment] = []
-        # self.Symbols: List[QGraphicsItemGroup] = []
-        # self.Circles: List[element.Circle] = []
-        # self.Polygons: List[QGraphicsPolygonItem] = []
-        # self.Rectangles: List[element.Rectangle] = []
+        self.Symbols: list = []
         self.RawRectangles: List[element.Raw_Rectangle] = []
         self.RawLines: List[element.Raw_Line] = []
         self.TextUnderlayRects: List[element.FillRect] = []
         self.Text: List[element.Text_line] = []
-        # self.Symbols: List[...] = []
         # self.Circles: List[element.Circle] = []
         # self.Polygons: List[...] = []
         # self.Rectangles: List[element.Rectangle] = []
@@ -92,7 +88,7 @@ class Layer:
         # Rendering order determines what can potentially overlap on this Layer, so order matters
         elements = []
         elements.extend(LineSegment.render(self))
-        # Symbol.render(self)
+        elements.extend(Symbol.render(self))
         # CircleSE.render(self)
         # RectangleSE.render(self)
         # PolygonSE.render(self)
