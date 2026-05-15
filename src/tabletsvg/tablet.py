@@ -22,6 +22,7 @@ from tabletsvg.layer import Layer
 from tabletsvg.configuration.styles import FloatRGB
 from tabletsvg.graphics.symbol import Symbol
 from tabletsvg.graphics.text_element import TextElement
+from tabletsvg.graphics.image import ImageDE
 from tabletsvg.resource_library import ResourceLibrary
 
 default_background = FloatRGB(255, 255, 255)  # White
@@ -95,7 +96,7 @@ class Tablet:
 
         # Load symbols, stickers, and build image paths for all assets and drawing types
         Symbol.load_symbol_defs()
-        # ImageDE.build_paths()
+        ImageDE.build_paths()
         TextElement.load_stickers()
 
         # Establish a system default layer ordering. Not all of them will be used in any given

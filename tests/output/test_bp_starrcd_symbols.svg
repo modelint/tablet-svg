@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="842" height="595" viewBox="0 0 842 595">
+  <rect width="842" height="595" fill="rgb(0,77,138)" />
+  <g>
+    <circle stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" cx="51" cy="194" r="2" />
+  </g>
+  <g>
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="72,186 75,195 78,186" />
+  </g>
+  <g>
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="97,186 100,195 103,186" />
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="97,177 100,186 103,177" />
+  </g>
+  <g>
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="122,186 125,195 128,186" />
+  </g>
+  <g>
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="147,186 150,195 153,186" />
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="147,177 150,186 153,177" />
+  </g>
+  <g>
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="167,183 175,195 183,183" />
+  </g>
+  <g transform="rotate(90,50,295)">
+    <circle stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" cx="51" cy="294" r="2" />
+  </g>
+  <g transform="rotate(90,75,295)">
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="72,286 75,295 78,286" />
+  </g>
+  <g transform="rotate(90,100,295)">
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="97,286 100,295 103,286" />
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(255,255,255)" points="97,277 100,286 103,277" />
+  </g>
+  <g transform="rotate(90,125,295)">
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="122,286 125,295 128,286" />
+  </g>
+  <g transform="rotate(90,150,295)">
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="147,286 150,295 153,286" />
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="147,277 150,286 153,277" />
+  </g>
+  <g transform="rotate(90,175,295)">
+    <polygon stroke="rgb(255,255,255)" stroke-width="1" fill="rgb(0,77,138)" points="167,283 175,295 183,283" />
+  </g>
+</svg>

@@ -18,8 +18,8 @@ from tabletsvg.graphics.line_segment import LineSegment
 from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
 from tabletsvg.graphics.text_element import TextElement
 from tabletsvg.graphics.symbol import Symbol
-# from tabletqt.graphics.rectangle_se import RectangleSE
-# from tabletqt.graphics.image import ImageDE
+from tabletsvg.graphics.rectangle_se import RectangleSE
+from tabletsvg.graphics.image import ImageDE
 
 
 if TYPE_CHECKING:
@@ -66,8 +66,8 @@ class Layer:
         self.Text: List[element.Text_line] = []
         # self.Circles: List[element.Circle] = []
         # self.Polygons: List[...] = []
-        # self.Rectangles: List[element.Rectangle] = []
-        # self.Images: List[element.Image] = []
+        self.Rectangles: List[element.Rectangle] = []
+        self.Images: List[element.Image] = []
 
         # Load this Layer's presentation assets if they haven't been already
         # Unique ID (see Tablet Subsystem class diagram) of a Presentation is both
@@ -90,11 +90,11 @@ class Layer:
         elements.extend(LineSegment.render(self))
         elements.extend(Symbol.render(self))
         # CircleSE.render(self)
-        # RectangleSE.render(self)
+        elements.extend(RectangleSE.render(self))
         # PolygonSE.render(self)
         elements.extend(TextElement.render_underlays(self))
         elements.extend(TextElement.render(self))
-        # ImageDE.render(self)
+        elements.extend(ImageDE.render(self))
 
         # Diagnostic elements with explicit styling that bypass StyleDB lookup
         # Not intended for use by any client applications

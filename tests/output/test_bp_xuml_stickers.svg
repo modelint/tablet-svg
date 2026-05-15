@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="842" height="595" viewBox="0 0 842 595">
+  <rect width="842" height="595" fill="rgb(0,77,138)" />
+  <rect x="348" y="184" width="112" height="14" fill="rgb(0,77,138)" stroke="none" />
+  <text x="150" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">1</text>
+  <text x="175" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">1..*</text>
+  <text x="200" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">0..1</text>
+  <text x="250" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">0..*</text>
+  <text x="300" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">{M}</text>
+  <text x="350" y="195" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(255,255,255)">{disjoint, complete}</text>
+</svg>

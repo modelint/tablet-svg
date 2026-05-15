@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="842" height="595" viewBox="0 0 842 595">
+  <rect width="842" height="595" fill="rgb(197,150,35)" />
+  <g>
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="97,390 100,395 103,390" />
+  </g>
+  <g>
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="197,390 200,395 203,390" />
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="200,395 200,335" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(0,0,0)" cx="200" cy="338" r="3" />
+  </g>
+  <g>
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="300,395 300,379" />
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="296,384 300,379 304,384" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(255,255,255)" cx="300" cy="374" r="5" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(0,0,0)" cx="300" cy="374" r="3" />
+  </g>
+  <g transform="rotate(90,100,195)">
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="97,190 100,195 103,190" />
+  </g>
+  <g transform="rotate(180,200,195)">
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="197,190 200,195 203,190" />
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="200,195 200,135" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(0,0,0)" cx="200" cy="138" r="3" />
+  </g>
+  <g transform="rotate(270,300,195)">
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="300,195 300,179" />
+    <polyline stroke="rgb(0,0,0)" stroke-width="1" fill="none" points="296,184 300,179 304,184" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(255,255,255)" cx="300" cy="174" r="5" />
+    <circle stroke="rgb(0,0,0)" stroke-width="1" fill="rgb(0,0,0)" cx="300" cy="174" r="3" />
+  </g>
+</svg>

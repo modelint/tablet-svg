@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="842" height="595" viewBox="0 0 842 595">
+  <rect width="842" height="595" fill="rgb(159,172,186)" />
+  <line stroke="rgb(0,0,0)" stroke-width="1" x1="100" y1="290" x2="400" y2="290" />
+  <rect x="298" y="284" width="48" height="14" fill="rgb(159,172,186)" stroke="none" />
+  <text x="300" y="295" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(0,0,0)">underlay</text>
+  <text x="130" y="315.7" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(0,0,0)">boundary with</text>
+  <text x="174" y="304.0" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(0,0,0)">draws</text>
+  <text x="230" y="315.7" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(0,0,0)">boundary with</text>
+  <text x="230" y="304.0" font-family="Palatino Sans Informal LT Pro" font-size="9" fill="rgb(0,0,0)">draws</text>
+</svg>
