@@ -1,8 +1,9 @@
 """
-tabletqt.py – A multi-layered drawing surface implemented on top of the Qt GUI framework
+tablet.py – A multi-layered drawing surface that renders to SVG
 """
 # System
 import logging
+import xml.etree.ElementTree as ET
 from datetime import datetime  # For initial log entry
 from pathlib import Path
 from typing import Optional
@@ -156,19 +157,34 @@ class Tablet:
 
     def render(self):
         """
-        Renders each populated layer of the Tablet moving up the z axis. Any unpopulated layers are skipped.
+        Renders each populated layer of the Tablet moving up the z axis and writes an SVG file.
+        Any unpopulated layers are skipped.
         """
-        # Create and show the drawing window
-        [self.layers[name].render() for name in self.layer_order if self.layers.get(name)]
-        # self.Window.show()
+        w, h = self.Size.width, self.Size.height
+        svg = ET.Element('svg', {
+            'xmlns': 'http://www.w3.org/2000/svg',
+            'width': str(w),
+            'height': str(h),
+            'viewBox': f'0 0 {w} {h}',
+        })
 
-        # Save the rendered tabletqt as a PDF for alternate viewing
-        # self.View.save_as_pdf(self.Output_file)
+        bg = self.background_color
+        ET.SubElement(svg, 'rect', {
+            'width': str(w),
+            'height': str(h),
+            'fill': f'rgb({bg.r},{bg.g},{bg.b})',
+        })
 
-        # Run the Qt GUI event loop
-        # sys.exit(self.App.exec())
-        # if self.show_window:
-        #     self.App.exec()
+        for name in self.layer_order:
+            if self.layers.get(name):
+                for el in self.layers[name].render():
+                    svg.append(el)
+
+        self.Output_file.parent.mkdir(parents=True, exist_ok=True)
+        tree = ET.ElementTree(svg)
+        ET.indent(tree, space='  ')
+        tree.write(str(self.Output_file), encoding='unicode', xml_declaration=False)
+        self.logger.info(f"SVG written to {self.Output_file}")
 
     def to_dc(self, tablet_coord: Position) -> Position:
         """

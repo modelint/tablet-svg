@@ -80,13 +80,14 @@ class Layer:
             self.Tablet.Presentations[pres_index] = self.Presentation
 
 
-    def render(self):
-        """Renders all Elements on this Layer"""
+    def render(self) -> list:
+        """Renders all Elements on this Layer, returning a list of SVG elements."""
 
         self.logger.info(f'Rendering layer: {self.Name}')
 
         # Rendering order determines what can potentially overlap on this Layer, so order matters
-        LineSegment.render(self)
+        elements = []
+        elements.extend(LineSegment.render(self))
         # Symbol.render(self)
         # CircleSE.render(self)
         # RectangleSE.render(self)
@@ -98,3 +99,4 @@ class Layer:
         # Diagnostic elements with explicit styling that bypass StyleDB lookup
         # Not intended for use by any client applications
         # DiagnosticMarker.render(self)
+        return elements

@@ -2,22 +2,21 @@
 
 # System
 import logging
+import xml.etree.ElementTree as ET
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tabletsvg.layer import Layer
 
-# Qt
-# from PyQt6.QtWidgets import QGraphicsLineItem
-# from PyQt6.QtCore import QLineF
-
 # Tablet
 import tabletsvg.element as element
 from tabletsvg.geometry_types import Position
 from tabletsvg.graphics.crayon_box import CrayonBox
-from tabletsvg.exceptions import *
+from tabletsvg.exceptions import MissingConfigData
 
 _logger = logging.getLogger(__name__)
+
+
 class LineSegment:
     """
     Manage the rendering of Line Segments
@@ -31,11 +30,12 @@ class LineSegment:
     - From -- Draw from here in tablet coordinates
     - To -- To here in tablet coordinates
     """
+
     @classmethod
     def add(cls, layer: 'Layer', asset: str, from_here: Position, to_there: Position):
         """
         Convert line segment coordinates to device coordinates and combine with the Line Style defined
-        for the Asset in the selected Preentation Style
+        for the Asset in the selected Presentation Style.
 
         :param layer: Draw on this layer
         :param asset: Used to determine draw style
@@ -45,25 +45,32 @@ class LineSegment:
         try:
             line_style = layer.Presentation.Line_presentation[asset]['line style']
         except KeyError:
-            _logger.exception(f"No line style specified in line presentation for asset: [{asset}")
+            _logger.exception(f"No line style specified in line presentation for asset: [{asset}]")
             raise MissingConfigData
 
         layer.Line_segments.append(
-            element.Line_Segment(from_here=layer.Tablet.to_dc(from_here), to_there=layer.Tablet.to_dc(to_there),
-                                 style=line_style)
+            element.Line_Segment(
+                from_here=layer.Tablet.to_dc(from_here),
+                to_there=layer.Tablet.to_dc(to_there),
+                style=line_style,
+            )
         )
 
     @classmethod
-    def render(cls, layer: 'Layer'):
+    def render(cls, layer: 'Layer') -> list[ET.Element]:
         """
-        Draw the line segments
+        Build SVG line elements for all line segments on this layer.
 
         :param layer: Draw on this layer
+        :return: List of SVG <line> elements
         """
+        elements = []
         for ls in layer.Line_segments:
             _logger.info(f"> Line {ls.from_here}, {ls.to_there}")
-
-            # Create a line item for the scene
-            # ls_item = QGraphicsLineItem(QLineF(*ls.from_here, *ls.to_there))
-            # CrayonBox.choose_crayons(item=ls_item, border_style=ls.style)
-            # layer.Scene.addItem(ls_item)
+            attrs = CrayonBox.stroke_style(ls.style)
+            attrs['x1'] = str(ls.from_here.x)
+            attrs['y1'] = str(ls.from_here.y)
+            attrs['x2'] = str(ls.to_there.x)
+            attrs['y2'] = str(ls.to_there.y)
+            elements.append(ET.Element('line', attrs))
+        return elements

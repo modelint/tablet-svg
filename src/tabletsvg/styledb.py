@@ -102,7 +102,7 @@ class StyleDB:
         undefined_typefaces = [t.typeface for t in cls.text_style.values() if t.typeface not in cls.typeface]
         if undefined_typefaces:
             _logger.error(f"Undefined typefaces: {undefined_typefaces} encountered in"
-                          f"text styles configuration file:\n    {config_path / 'text_styles.yaml'}")
+                          f"text styles configuration file:\n    {TabletConfig.config_path / 'text_styles.yaml'}")
             raise BadConfigData
 
 
@@ -127,7 +127,7 @@ class StyleDB:
         undefined_colors = [c for c in cls.color_usage.values() if c not in cls.color]
         if undefined_colors:
             _logger.error(f"Undefined colors: {undefined_colors} encountered in"
-                          f"color usages configuration file:\n    {config_path / 'color_usages.yaml'}")
+                          f"color usages configuration file:\n    {TabletConfig.config_path / 'color_usages.yaml'}")
             raise BadConfigData
 
     @classmethod
