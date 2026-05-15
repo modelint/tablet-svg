@@ -54,7 +54,7 @@ class Layer:
         self.logger.info(f"creating layer: [{name}] ")
         self.Name = name
         self.Tablet = tablet
-        self.Scene = tablet.View.scene  # This is what we actually draw on
+        # self.Scene = tablet.View.scene  # This is what we actually draw on
         self.Drawing_type = drawing_type
 
         # Stuff we will draw on the Layer

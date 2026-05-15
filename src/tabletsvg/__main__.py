@@ -63,9 +63,9 @@ def main():
         spath = Path(__file__).parent / f'demo/{args.demo}.py'
         sys.exit(0)
 
-    # if args.test:
-    #     from tabletqt.styledb import StyleDB
-    #     StyleDB.load_config_files()
+    if args.test:
+        from tabletsvg.styledb import StyleDB
+        StyleDB.load_config_files()
 
     # if args.colors:
         # Just print the database colors and quit
