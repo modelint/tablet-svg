@@ -3,6 +3,7 @@
 # System
 import base64
 import logging
+import struct
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -66,10 +67,27 @@ class ImageDE:
         layer.Images.append(element.Image(resource_path=path, upper_left=ul, size=size))
         _logger.info(f'Registered image [{name}] at {ul}')
 
+    @staticmethod
+    def _png_size(path: Path) -> tuple[int, int]:
+        """
+        Read width and height from a PNG file header without external libraries.
+
+        PNG stores dimensions in the IHDR chunk: 8-byte signature, then the chunk
+        starts with 4-byte length + 4-byte 'IHDR' + 4-byte width + 4-byte height.
+        """
+        with open(path, 'rb') as f:
+            f.read(16)  # skip: 8-byte PNG sig + 4-byte IHDR length + 4-byte 'IHDR'
+            w, h = struct.unpack('>II', f.read(8))
+        return w, h
+
     @classmethod
     def render(cls, layer: 'Layer') -> list[ET.Element]:
         """
         Render image elements as SVG <image> tags with embedded base64 data URIs.
+
+        Display dimensions are taken from the image file's natural pixel size,
+        matching the Qt behaviour where QPixmap rendered at native resolution
+        regardless of the size hint passed to add().
 
         :param layer: Draw on this layer
         :return: List of SVG image elements
@@ -84,6 +102,13 @@ class ImageDE:
             suffix = path.suffix.lower()
             mime = 'image/png' if suffix == '.png' else 'image/jpeg'
 
+            # Use natural image dimensions, not the size hint (which Qt only used
+            # for the lower-left → upper-left coordinate conversion)
+            if suffix == '.png':
+                nat_w, nat_h = cls._png_size(path)
+            else:
+                nat_w, nat_h = img.size.width, img.size.height  # fallback for JPEG
+
             with open(path, 'rb') as f:
                 encoded = base64.b64encode(f.read()).decode('ascii')
 
@@ -91,9 +116,9 @@ class ImageDE:
                 'href': f'data:{mime};base64,{encoded}',
                 'x': str(img.upper_left.x),
                 'y': str(img.upper_left.y),
-                'width': str(img.size.width),
-                'height': str(img.size.height),
+                'width': str(nat_w),
+                'height': str(nat_h),
             })
-            _logger.info(f"> Image [{path.name}] at {img.upper_left}")
+            _logger.info(f"> Image [{path.name}] at {img.upper_left}, natural size {nat_w}×{nat_h}")
             elements.append(el)
         return elements
