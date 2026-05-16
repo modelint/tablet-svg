@@ -8,18 +8,11 @@ from datetime import datetime  # For initial log entry
 from pathlib import Path
 from typing import Optional
 
-
-# Qt
-# from PyQt6.QtWidgets import QApplication
-
 # Tablet
 from tabletsvg.exceptions import *
 from tabletsvg.geometry_types import Rect_Size, Position
 from tabletsvg.styledb import StyleDB
-# from tabletqt.graphics.text_element import TextElement
 from tabletsvg.layer import Layer
-# from tabletqt.scene_view import MainWindow
-# from tabletqt.graphics.image import ImageDE
 from tabletsvg.configuration.styles import FloatRGB
 from tabletsvg.graphics.symbol import Symbol
 from tabletsvg.graphics.text_element import TextElement
@@ -27,9 +20,6 @@ from tabletsvg.graphics.image import ImageDE
 from tabletsvg.resource_library import ResourceLibrary
 
 default_background = FloatRGB(255, 255, 255)  # White
-
-# gui_app = QApplication([]) # Declare it here so it is not garbage collected on repeated instantiation of Tablet
-# We create a Qt App instance just once on the import and then keep using the same one
 
 class Tablet:
     """
@@ -115,9 +105,6 @@ class Tablet:
             raise MissingConfigData
         self.layer_order = ['sheet', 'grid', 'frame', 'diagram', 'scenario', 'annotation']
         self.Presentations = {}  # Presentations loaded from the Flatland database, updated by Layer class
-        # self.App = gui_app  # QT Application (must be created before any QT widgets)
-        # self.Window = MainWindow(title=self.app_name, size=size, background=self.background_color)  # QT widget for drawing 2D elements
-        # self.View = self.Window.graphics_view
 
         if layer not in self.layer_order:
             raise NonSystemInitialLayer

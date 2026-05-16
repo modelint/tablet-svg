@@ -1,6 +1,4 @@
-"""
-__main__.py
-"""
+""" __main__.py """
 
 # System
 import logging
@@ -11,14 +9,12 @@ from pathlib import Path
 
 # Tablet
 from tabletsvg import version
-# from tabletqt.etchasketch import EtchaSketch
-# from tabletqt.sketchsymbols import SketchSymbols
 
 _logpath = Path("tabletsvg.log")
 app_name = "Tablet"
 
 def get_logger():
-    """Initiate the logger"""
+    """ Initiate the logger """
     log_conf_path = Path(__file__).parent / 'log.conf'  # Logging configuration is in this file
     logging.config.fileConfig(fname=log_conf_path, disable_existing_loggers=False)
     return logging.getLogger(__name__)  # Create a logger for this module
@@ -28,7 +24,7 @@ def parse(cl_input):
     """
     The command line interface is for diagnostic purposes.
     """
-    parser = argparse.ArgumentParser(description='Tabletx 2D draw interface to Cairo')
+    parser = argparse.ArgumentParser(description='Tablet 2D model diagram svg generator')
     parser.add_argument('-demo', action='store',
                         help='name of demo module')
     parser.add_argument('-COLORS', '--colors', action='store_true',
@@ -64,10 +60,10 @@ def main():
         from tabletsvg.styledb import StyleDB
         StyleDB.load_config_files()
 
-    # if args.colors:
+    if args.colors:
         # Just print the database colors and quit
-        # from tabletqt.styledb import StyleDB
-        # StyleDB.report_colors()
+        from tabletsvg.styledb import StyleDB
+        StyleDB.report_colors()
 
     logger.info("No problemo")  # We didn't die on an exception
     print("\nNo problemo")
