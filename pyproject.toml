@@ -27,3 +27,6 @@ repository    = "https://github.com/modelint/tablet-svg"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+tabletsvg = ["*.conf"]
