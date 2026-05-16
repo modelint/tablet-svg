@@ -13,8 +13,8 @@ from typing import TYPE_CHECKING, List
 import tabletsvg.element as element
 from tabletsvg.presentation import Presentation
 # from tabletqt.graphics.circle_se import CircleSE
-# from tabletqt.graphics.polygon_se import PolygonSE
 from tabletsvg.graphics.line_segment import LineSegment
+from tabletsvg.graphics.polygon_se import PolygonSE
 from tabletsvg.graphics.diagnostic_marker import DiagnosticMarker
 from tabletsvg.graphics.text_element import TextElement
 from tabletsvg.graphics.symbol import Symbol
@@ -66,7 +66,7 @@ class Layer:
         self.TextUnderlayRects: List[element.FillRect] = []
         self.Text: List[element.Text_line] = []
         # self.Circles: List[element.Circle] = []
-        # self.Polygons: List[...] = []
+        self.Polygons: List[element.Polygon] = []
         self.Rectangles: List[element.Rectangle] = []
         self.Images: List[element.Image] = []
 
@@ -92,7 +92,7 @@ class Layer:
         elements.extend(Symbol.render(self))
         # CircleSE.render(self)
         elements.extend(RectangleSE.render(self))
-        # PolygonSE.render(self)
+        elements.extend(PolygonSE.render(self))
         elements.extend(TextElement.render_underlays(self))
         elements.extend(TextElement.render(self))
         elements.extend(ImageDE.render(self))
