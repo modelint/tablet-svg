@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mi-tabletsvg"
-version = "1.3.0"
+version = "1.3.1"
 description = "Tablet simple 2D drawing interface that renders to SVG"
 readme = "README.md"
 authors = [{ name = "Leon Starr", email = "leon_starr@modelint.com" }]
